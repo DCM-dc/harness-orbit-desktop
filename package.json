@@ -1,0 +1,115 @@
+{
+  "name": "harness-orbit-desktop",
+  "version": "0.2.0",
+  "description": "A complete Windows desktop shell for DeepSeek Harness with the Orbit plugin-first interface.",
+  "main": "src/main.cjs",
+  "author": "Harness Orbit",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "smoke": "electron . --smoke-test",
+    "generate:icon": "node scripts/generate-icon.cjs",
+    "postinstall": "npm run generate:icon",
+    "pack:win": "electron-builder --win dir --x64",
+    "dist:win": "electron-builder --win nsis --x64",
+    "pack:mac": "electron-builder --mac dir",
+    "dist:mac": "electron-builder --mac dmg"
+  },
+  "dependencies": {
+    "@local/dsh-ui-orbit": "file:profile-template/plugins/dsh-ui-orbit",
+    "@deepseek-ai/dsh": "0.1.0-rc.6",
+    "pnpm": "11.21.0"
+  },
+  "devDependencies": {
+    "electron": "43.4.0",
+    "electron-builder": "26.15.3",
+    "sharp": "0.34.3"
+  },
+  "build": {
+    "appId": "com.deepseek.harness.orbit",
+    "productName": "Harness Orbit",
+    "copyright": "Copyright © 2026 Harness Orbit",
+    "asar": false,
+    "npmRebuild": false,
+    "electronDist": "node_modules/electron/dist",
+    "compression": "normal",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "src/**/*",
+      "package.json",
+      "node_modules/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "profile-template",
+        "to": "profile-template",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png",
+      "executableName": "Harness Orbit",
+      "artifactName": "Harness-Orbit-Setup-${version}-${arch}.${ext}"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png",
+      "category": "public.app-category.developer-tools",
+      "artifactName": "Harness-Orbit-${version}-mac-${arch}.${ext}",
+      "hardenedRuntime": false,
+      "notarize": false
+    },
+    "dmg": {
+      "title": "Harness Orbit ${version}",
+      "backgroundColor": "#0B0C12",
+      "iconSize": 104,
+      "contents": [
+        {
+          "x": 140,
+          "y": 190,
+          "type": "file"
+        },
+        {
+          "x": 400,
+          "y": 190,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Harness Orbit",
+      "uninstallDisplayName": "Harness Orbit",
+      "deleteAppDataOnUninstall": false,
+      "runAfterFinish": true
+    }
+  }
+}

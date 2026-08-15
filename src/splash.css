@@ -1,0 +1,174 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, "SF Pro Display", "Segoe UI Variable Display", "Segoe UI", sans-serif;
+  background: #090a10;
+}
+
+* { box-sizing: border-box; }
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  color: rgba(255, 255, 255, 0.92);
+  background:
+    radial-gradient(circle at 18% 8%, rgba(106, 92, 255, 0.14), transparent 34%),
+    radial-gradient(circle at 82% 90%, rgba(44, 213, 255, 0.10), transparent 36%),
+    linear-gradient(145deg, #0d0e17 0%, #08090e 72%);
+}
+
+.stage {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.18;
+  background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: radial-gradient(circle, black 5%, transparent 72%);
+}
+
+.aurora {
+  position: absolute;
+  z-index: -2;
+  width: 34rem;
+  height: 34rem;
+  border-radius: 50%;
+  filter: blur(78px);
+  opacity: 0.22;
+  animation: drift 8s ease-in-out infinite alternate;
+}
+
+.aurora-one { left: 8%; top: -18%; background: #7147ff; }
+.aurora-two { right: 4%; bottom: -25%; background: #00c7e8; animation-delay: -4s; }
+
+.glass-card {
+  width: min(420px, calc(100vw - 48px));
+  padding: 46px 46px 38px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 32px;
+  background: linear-gradient(145deg, rgba(255,255,255,.105), rgba(255,255,255,.042));
+  box-shadow: 0 30px 100px rgba(0,0,0,.46), inset 0 1px 0 rgba(255,255,255,.13);
+  backdrop-filter: blur(34px) saturate(145%);
+  animation: arrive 700ms cubic-bezier(.22,.9,.28,1) both;
+}
+
+.mark-wrap {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 104px;
+  height: 104px;
+  margin: 0 auto 27px;
+}
+
+.mark {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 16px 34px rgba(67, 139, 255, .23));
+  animation: breathe 3.1s ease-in-out infinite;
+}
+
+.mark-glow {
+  position: absolute;
+  inset: 18%;
+  border-radius: 50%;
+  background: #7b62ff;
+  filter: blur(34px);
+  opacity: .55;
+}
+
+.eyebrow {
+  margin: 0 0 9px;
+  color: rgba(194, 202, 255, .62);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .22em;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(30px, 4vw, 39px);
+  font-weight: 650;
+  letter-spacing: -.035em;
+  line-height: 1.08;
+}
+
+.status {
+  margin: 15px 0 25px;
+  color: rgba(236, 238, 255, .62);
+  font-size: 14px;
+}
+
+.progress {
+  position: relative;
+  height: 5px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: rgba(255,255,255,.08);
+}
+
+.progress span {
+  position: absolute;
+  inset-block: 0;
+  left: -38%;
+  width: 38%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #7664ff, #38d7ff);
+  box-shadow: 0 0 18px rgba(80, 202, 255, .72);
+  animation: loading 1.45s cubic-bezier(.42,0,.3,1) infinite;
+}
+
+.meta {
+  min-height: 16px;
+  margin: 18px 0 0;
+  color: rgba(210, 215, 239, .38);
+  font-size: 11px;
+  letter-spacing: .025em;
+}
+
+@keyframes arrive {
+  from { opacity: 0; transform: translateY(16px) scale(.975); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes loading {
+  from { transform: translateX(0); }
+  to { transform: translateX(365%); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.035); }
+}
+
+@keyframes drift {
+  from { transform: translate3d(-2%, -1%, 0) scale(.96); }
+  to { transform: translate3d(4%, 3%, 0) scale(1.07); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+  .progress span { left: 0; width: 72%; }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .glass-card { background: #171822; backdrop-filter: none; }
+}

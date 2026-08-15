@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self'; style-src 'self'; script-src 'self'">
+    <title>Harness Orbit</title>
+    <link rel="stylesheet" href="splash.css">
+  </head>
+  <body>
+    <main class="stage" aria-labelledby="app-title">
+      <div class="aurora aurora-one"></div>
+      <div class="aurora aurora-two"></div>
+      <section class="glass-card">
+        <div class="mark-wrap" aria-hidden="true">
+          <img class="mark" src="assets/orbit-mark.svg" alt="">
+          <div class="mark-glow"></div>
+        </div>
+        <p class="eyebrow">DEEPSEEK HARNESS</p>
+        <h1 id="app-title">Harness Orbit</h1>
+        <p class="status">正在唤醒本地智能体引擎</p>
+        <div class="progress" role="progressbar" aria-label="正在启动">
+          <span></span>
+        </div>
+        <p class="meta" id="meta">安全连接 · 127.0.0.1</p>
+      </section>
+    </main>
+    <script src="splash.js"></script>
+  </body>
+</html>
