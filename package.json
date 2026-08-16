@@ -1,6 +1,6 @@
 {
   "name": "harness-orbit-desktop",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A complete Windows desktop shell for DeepSeek Harness with the Orbit plugin-first interface.",
   "main": "src/main.cjs",
   "author": "Harness Orbit",
@@ -12,9 +12,9 @@
     "generate:icon": "node scripts/generate-icon.cjs",
     "postinstall": "npm run generate:icon",
     "pack:win": "electron-builder --win dir --x64",
-    "dist:win": "electron-builder --win nsis --x64",
+    "dist:win": "electron-builder --win nsis --x64 --publish never",
     "pack:mac": "electron-builder --mac dir",
-    "dist:mac": "electron-builder --mac dmg"
+    "dist:mac": "electron-builder --mac dmg --publish never"
   },
   "dependencies": {
     "@local/dsh-ui-orbit": "file:profile-template/plugins/dsh-ui-orbit",
