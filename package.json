@@ -1,6 +1,6 @@
 {
   "name": "harness-orbit-desktop",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A complete Windows desktop shell for DeepSeek Harness with the Orbit plugin-first interface.",
   "main": "src/main.cjs",
   "author": "Harness Orbit",

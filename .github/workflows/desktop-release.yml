@@ -111,5 +111,6 @@ jobs:
         run: >-
           gh release create "${GITHUB_REF_NAME}"
           release-assets/*
+          --repo "${GITHUB_REPOSITORY}"
           --title "Harness Orbit ${GITHUB_REF_NAME}"
           --generate-notes

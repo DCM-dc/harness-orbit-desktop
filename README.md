@@ -41,8 +41,8 @@ Unsigned installers are written to `dist/`. A public macOS release should be sig
 Push a version tag to build and publish the Windows installer automatically:
 
 ```powershell
-git tag v0.2.3
-git push origin v0.2.3
+git tag v0.2.4
+git push origin v0.2.4
 ```
 
 The included GitHub Actions workflow also supports manual runs from the Actions tab. It builds Windows x64, macOS arm64, and macOS x64 on their native GitHub-hosted runners. Installers belong in GitHub Releases rather than Git history because they exceed GitHub's regular file-size limit.
