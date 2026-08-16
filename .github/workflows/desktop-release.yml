@@ -31,6 +31,9 @@ jobs:
       - name: Smoke test
         run: npm run smoke
 
+      - name: Restore packaging dependency
+        run: npm install --no-save --ignore-scripts debug@4.4.3
+
       - name: Build Windows installer
         run: npm run dist:win
 
@@ -73,6 +76,9 @@ jobs:
 
       - name: Smoke test
         run: npm run smoke
+
+      - name: Restore packaging dependency
+        run: npm install --no-save --ignore-scripts debug@4.4.3
 
       - name: Build macOS disk image
         run: npm run dist:mac -- --${{ matrix.arch }}
